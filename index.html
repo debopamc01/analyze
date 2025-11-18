@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Single Page Web App</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  pre { background: #f4f4f4; padding: 10px; overflow: auto; }
+</style>
+</head>
+<body>
+<h1>Data Analysis Result</h1>
+<button id="loadBtn">Load Data Result</button>
+<pre id="resultContainer">Click the button to load result.json</pre>
+<script>
+  document.getElementById('loadBtn').addEventListener('click', () => {
+    fetch('result.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('resultContainer').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('resultContainer').textContent = 'Error loading result.json';
+      });
+  });
+</script>
+</body>
+</html>
